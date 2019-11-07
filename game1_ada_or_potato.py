@@ -9,8 +9,11 @@ TIMER_MAX = 100
 IMAGE_ADA = arcade.load_texture("images/ada.png")
 IMAGE_POTATO = arcade.load_texture("images/potato.png")
 
+
 class AdaPotato(arcade.Sprite):
     timer: int
+    test: bool
+
 
     def __init__(self):
         super().__init__()
@@ -18,6 +21,7 @@ class AdaPotato(arcade.Sprite):
         self.center_y = WINDOW_HEIGHT / 2
         self.texture = IMAGE_ADA
         self.timer = 0
+        self.test = None
 
     def update_timer(self):
         if self.timer < TIMER_MAX:
@@ -32,11 +36,12 @@ class AdaPotato(arcade.Sprite):
     def swap_image(self):
         if self.timer <= 50:
             self.texture = IMAGE_POTATO
+            self.test = False
+            return self.test
         else:
             self.texture = IMAGE_ADA
-
-
-
+            self.test = True
+            return self.test
 
 
 class MainGame(arcade.Window):
@@ -44,6 +49,7 @@ class MainGame(arcade.Window):
         """ Initialize variables """
         super().__init__(WINDOW_WIDTH, WINDOW_HEIGHT, GAME_TITLE)
         self.logo_list = None
+        self.score = 0
 
     def setup(self):
         """ Setup the game (or reset the game) """
@@ -62,9 +68,14 @@ class MainGame(arcade.Window):
         """ Called every frame of the game (1/GAME_SPEED times per second)"""
 
     def on_mouse_press(self, x: float, y: float, button: int, modifiers:int):
-        for loop in self.logo_list:
-            logo.swap_image()
-
+        for logo in self.logo_list:
+            print(logo)
+            if logo == self.logo_list[0]:
+                self.score += 1
+                print(self.score)
+            else:
+                self.score -= 1
+                print(self.score)
 
 
 def main():
