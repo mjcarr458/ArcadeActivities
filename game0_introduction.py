@@ -22,7 +22,7 @@ class Cisc108Logo(arcade.Sprite):
     timer: int
 
     def __init__(self):
-        super().__init__("images/cisc108_banner.png")
+        super().__init__()
         self.phase = 'waiting'
         self.timer = 0
         self.center_x = WINDOW_WIDTH/2
