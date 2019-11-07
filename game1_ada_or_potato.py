@@ -5,7 +5,7 @@ WINDOW_HEIGHT = 500
 BACKGROUND_COLOR = arcade.color.BLACK
 GAME_TITLE = "Introduction"
 GAME_SPEED = 1/60
-TIMER_MAX = 60
+TIMER_MAX = 100
 IMAGE_ADA = arcade.load_texture("images/ada.png")
 IMAGE_POTATO = arcade.load_texture("images/potato.png")
 
@@ -27,12 +27,15 @@ class AdaPotato(arcade.Sprite):
 
     def update(self):
         self.update_timer()
+        self.swap_image()
 
     def swap_image(self):
-        if self.texture == IMAGE_POTATO:
-            self.texture = IMAGE_ADA
-        else:
+        if self.timer <= 50:
             self.texture = IMAGE_POTATO
+        else:
+            self.texture = IMAGE_ADA
+
+
 
 
 
@@ -59,8 +62,9 @@ class MainGame(arcade.Window):
         """ Called every frame of the game (1/GAME_SPEED times per second)"""
 
     def on_mouse_press(self, x: float, y: float, button: int, modifiers:int):
-        for logo in self.logo_list:
+        for loop in self.logo_list:
             logo.swap_image()
+
 
 
 def main():
