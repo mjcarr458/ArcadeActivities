@@ -21,13 +21,15 @@ class AdaPotato(arcade.Sprite):
         self.center_y = WINDOW_HEIGHT / 2
         self.texture = arcade.Sprite("images/ada.png")
         self.timer = 0
-        self.test = True
+        self.test = None
 
     def update_timer(self):
+        access = self.timer
         if self.timer < TIMER_MAX:
             self.timer += 1
         else:
             self.timer = 0
+        return access
 
     def update(self):
         self.update_timer()
@@ -37,15 +39,17 @@ class AdaPotato(arcade.Sprite):
         if self.timer <= 50:
             self.texture = arcade.Sprite("images/potato.png", scale=0.5)
         else:
+        HEAD
             self.texture = arcade.Sprite("images/ada.png", scale=0.5)
         return self.test
 
+
     def test_option(self):
-        print(self.timer)
-        if self.timer <= 50:
-            return False
-        else:
+        print(self.test)
+        if self.test:
             return True
+        else:
+            return False
 
 
 AP = AdaPotato()
@@ -73,7 +77,8 @@ class MainGame(arcade.Window, AdaPotato):
         """ Called every frame of the game (1/GAME_SPEED times per second)"""
 
     def on_mouse_press(self, x: float, y: float, button: int, modifiers:int):
-        print(self.logo_list[0])
+        print(AP.test_option())
+
 
 def main():
     window = MainGame()
