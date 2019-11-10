@@ -29,7 +29,6 @@ class AdaPotato(arcade.Sprite):
             self.timer += 1
         else:
             self.timer = 0
-        return access
 
     def update(self):
         self.update_timer()
@@ -39,14 +38,14 @@ class AdaPotato(arcade.Sprite):
         if self.timer <= 50:
             self.texture = arcade.Sprite("images/potato.png", scale=0.5)
         else:
-        HEAD
             self.texture = arcade.Sprite("images/ada.png", scale=0.5)
         return self.test
 
 
     def test_option(self):
         print(self.test)
-        if self.test:
+        if self.test <= 50:
+
             return True
         else:
             return False
