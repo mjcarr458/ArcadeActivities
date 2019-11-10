@@ -1,7 +1,7 @@
 import arcade
 # Define constants
-WINDOW_WIDTH = 500
-WINDOW_HEIGHT = 500
+WINDOW_WIDTH = 1000
+WINDOW_HEIGHT = 1000
 BACKGROUND_COLOR = arcade.color.BLACK
 GAME_TITLE = "Introduction"
 GAME_SPEED = 1/60
@@ -19,7 +19,7 @@ class AdaPotato(arcade.Sprite):
         super().__init__()
         self.center_x = WINDOW_WIDTH / 2
         self.center_y = WINDOW_HEIGHT / 2
-        self.texture = IMAGE_ADA
+        self.texture = arcade.Sprite("images/ada.png")
         self.timer = 0
         self.test = True
 
@@ -35,9 +35,9 @@ class AdaPotato(arcade.Sprite):
 
     def swap_image(self):
         if self.timer <= 50:
-            self.texture = IMAGE_POTATO
+            self.texture = arcade.Sprite("images/potato.png", scale=0.5)
         else:
-            self.texture = IMAGE_ADA
+            self.texture = arcade.Sprite("images/ada.png", scale=0.5)
         return self.test
 
     def test_option(self):
