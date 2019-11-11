@@ -41,12 +41,14 @@ class AdaPotato(arcade.Sprite):
 
 class MainGame(arcade.Window, AdaPotato):
     score : int
+    display: str
 
     def __init__(self):
         """ Initialize variables """
         super().__init__(WINDOW_WIDTH, WINDOW_HEIGHT, GAME_TITLE)
         self.image_list = None
         self.score = 0
+
 
     def setup(self):
         """ Setup the game (or reset the game) """
@@ -58,6 +60,7 @@ class MainGame(arcade.Window, AdaPotato):
         """ Called when it is time to draw the world """
         arcade.start_render()
         self.image_list.draw()
+        arcade.draw_text(str(self.score), 450, 450, arcade.color.WHITE, 16)
 
     def on_update(self, delta_time):
         self.image_list.update()
