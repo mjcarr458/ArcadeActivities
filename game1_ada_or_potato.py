@@ -8,6 +8,10 @@ GAME_SPEED = 1/60
 TIMER_MAX = 100
 IMAGE_ADA = arcade.load_texture("images/ada.png")
 IMAGE_POTATO = arcade.load_texture("images/potato.png")
+PHASE = {
+        "fail":"pass",
+        "pass":"fail"
+}
 
 
 class AdaPotato(arcade.Sprite):
@@ -17,6 +21,7 @@ class AdaPotato(arcade.Sprite):
 
     def __init__(self):
         super().__init__()
+        self.phase = "pass"
         self.center_x = WINDOW_WIDTH / 2
         self.center_y = WINDOW_HEIGHT / 2
         self.texture = IMAGE_ADA
@@ -24,16 +29,20 @@ class AdaPotato(arcade.Sprite):
         self.test = None
 
     def update_timer(self):
-        access = self.timer
         if self.timer < TIMER_MAX:
             self.timer += 1
         else:
             self.timer = 0
-        return access
+            self.phase = PHASE[self.phase]
 
     def update(self):
+        if self.phase == "pass":
+            self.test = True
+        elif self.phase == "fail":
+            self.test = False
         self.update_timer()
         self.swap_image()
+        self.test_option()
 
     def swap_image(self):
         if self.timer <= 50:
@@ -41,8 +50,8 @@ class AdaPotato(arcade.Sprite):
         else:
             self.texture = IMAGE_ADA
 
+
     def test_option(self):
-        print(self.test)
         if self.test:
             return True
         else:
@@ -75,6 +84,10 @@ class MainGame(arcade.Window, AdaPotato):
 
     def on_mouse_press(self, x: float, y: float, button: int, modifiers:int):
         print(AP.test_option())
+        if AP.test_option():
+            print("end1")
+        else:
+            print("end2")
 
 
 def main():
