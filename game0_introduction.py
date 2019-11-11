@@ -16,6 +16,8 @@ NEXT_PHASE = {
     'waiting again': 'spinning forward'
     }
 
+IMAGE_ADA = arcade.load_texture("images/ada.png")
+IMAGE_BANNER = arcade.load_texture("images/cisc108_banner.png")
 
 class Cisc108Logo(arcade.Sprite):
     phase: str
@@ -27,6 +29,7 @@ class Cisc108Logo(arcade.Sprite):
         self.timer = 0
         self.center_x = WINDOW_WIDTH/2
         self.center_y = WINDOW_HEIGHT/2
+        self.texture = IMAGE_BANNER
 
     def update_timer(self):
         if self.timer < TIMER_MAXIMUM:

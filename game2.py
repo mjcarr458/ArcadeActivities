@@ -54,9 +54,6 @@ class AP(arcade.Sprite):
         """ Called when it is time to draw the world """
         arcade.start_render()
 
-    def on_update(self, delta_time):
-        """ Called every frame of the game (1/GAME_SPEED times per second)"""
-
 
 class APGame(arcade.Window):
     def __init__(self):
